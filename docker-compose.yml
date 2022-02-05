@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+  cadastropessoa.api:
+    image: ${DOCKER_REGISTRY-}cadastropessoaapi
+    build:
+      context: .
+      dockerfile: back-end/CadastroPessoa.Api/Dockerfile
+    networks:
+      - pg
+
+  postgres_service:
+    image: postgres:14
+    environment:
+      - POSTGRES_PASSWORD=senha1234
+      - POSTGRES_USER=dbUser
+      - POSTGRES_DB=CadastroPessoaDb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/scripts/:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432    
+    networks:
+      - pg
+
+  postgres_UI:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@email.com
+      - PGADMIN_DEFAULT_PASSWORD=172839
+    ports:
+      - 8080:80
+    networks:
+      - pg
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  pg:
+    driver: bridge    
