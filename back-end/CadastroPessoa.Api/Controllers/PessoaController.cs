@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CadastroPessoa.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class PessoaController : ControllerBase
 {
     private readonly IPessoaRepository pessoaRepository;
@@ -31,6 +31,15 @@ public class PessoaController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(Pessoa pessoa)
     {
+        PessoaValidator validador = new();
+        var validacao = validador.Validate(pessoa);
+
+        if (!validacao.IsValid)
+            return BadRequest(new
+            {
+                erros = validacao.Errors.Select(c => new { c.PropertyName, c.ErrorMessage })
+            });
+
         await this.pessoaRepository.AdicionarPessoa(pessoa);
         await this.pessoaRepository.SaveChanges();
 
@@ -40,9 +49,30 @@ public class PessoaController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> Put(Pessoa pessoa)
     {
+        PessoaValidator validador = new();
+
         var pessoaAlteracao = await this.pessoaRepository.ObterPessoaAlteracao(pessoa.Id);
 
-        pessoaAlteracao.AlterarNomePessoa(pessoa.Nome);
+        if (pessoaAlteracao is null)
+            return NotFound();
+
+        pessoaAlteracao.AlterarNome(pessoa.Nome);
+        pessoaAlteracao.AlterarSobrenome(pessoa.Sobrenome);
+        pessoaAlteracao.AlterarNacionalidade(pessoa.Nacionalidade);
+        pessoaAlteracao.AlterarEstado(pessoa.Estado);
+        pessoaAlteracao.AlterarLogradouro(pessoa.Logradouro);
+        pessoaAlteracao.AlterarTelefone(pessoa.Telefone);
+        pessoaAlteracao.AlterarCidade(pessoa.Cidade);
+        pessoaAlteracao.AlterarCep(pessoa.Cep);
+        pessoaAlteracao.AlterarEmail(pessoa.Email);
+
+        var validacao = validador.Validate(pessoaAlteracao);
+
+        if (!validacao.IsValid)
+            return BadRequest(new
+            {
+                erros = validacao.Errors.Select(c => new { c.PropertyName, c.ErrorMessage })
+            });
 
         await this.pessoaRepository.SaveChanges();
 

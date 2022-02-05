@@ -5,7 +5,7 @@ namespace CadastroPessoa.Context
 {
     public class CadastroPessoaContext : DbContext
     {
-        public CadastroPessoaContext(DbContextOptions op): base(op)
+        public CadastroPessoaContext(DbContextOptions op) : base(op)
         {
         }
 
@@ -15,5 +15,6 @@ namespace CadastroPessoa.Context
         {
             builder.HasDefaultSchema("cadastropessoa");
             builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
-        }    }
+        }
+    }
 }

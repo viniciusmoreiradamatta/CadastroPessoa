@@ -7,7 +7,6 @@ namespace CadastroPessoa
     {
         public PessoaValidator()
         {
-
             RuleFor(c => c.Nome).MaximumLength(50).WithMessage("Tamanho maximo atingido")
                                 .NotEmpty().WithMessage("O nome nao pode ser nulo");
 

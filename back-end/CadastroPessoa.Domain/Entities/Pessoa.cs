@@ -27,9 +27,49 @@
         public string Email { get; private set; }
         public string Telefone { get; private set; }
 
-        public void AlterarNomePessoa(string novoNome)
+        public void AlterarNome(string novoNome)
         {
-            this.Nome = novoNome;   
+            this.Nome = novoNome;
+        }
+
+        public void AlterarSobrenome(string novoSobrenome)
+        {
+            this.Sobrenome = novoSobrenome;
+        }
+
+        public void AlterarNacionalidade(string novaNacionalidade)
+        {
+            this.Nacionalidade = novaNacionalidade;
+        }
+
+        public void AlterarCep(string novoCep)
+        {
+            this.Cep = novoCep;
+        }
+
+        public void AlterarEstado(string novoEstado)
+        {
+            this.Estado = novoEstado;
+        }
+
+        public void AlterarCidade(string novaCidade)
+        {
+            this.Cidade = novaCidade;
+        }
+
+        public void AlterarLogradouro(string novoLogradouro)
+        {
+            this.Logradouro = novoLogradouro;
+        }
+
+        public void AlterarTelefone(string novoTelefone)
+        {
+            this.Telefone = novoTelefone;
+        }
+
+        public void AlterarEmail(string novoEmail)
+        {
+            this.Email = novoEmail;
         }
     }
 }

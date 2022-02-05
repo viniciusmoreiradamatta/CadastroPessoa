@@ -9,7 +9,7 @@ namespace CadastroPessoa.Map
         public void Configure(EntityTypeBuilder<Pessoa> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).HasColumnName("id"); 
+            builder.Property(c => c.Id).HasColumnName("id");
             builder.Property(c => c.Nome).HasMaxLength(50).HasColumnName("nome");
             builder.Property(c => c.Sobrenome).HasMaxLength(200).HasColumnName("sobrenome");
             builder.Property(c => c.Cep).HasMaxLength(8).HasColumnName("cep");

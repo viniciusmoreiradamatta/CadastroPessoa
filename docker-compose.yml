@@ -8,6 +8,8 @@ services:
       dockerfile: back-end/CadastroPessoa.Api/Dockerfile
     networks:
       - pg
+    depends_on:
+      - postgres_service
 
   postgres_service:
     image: postgres:14
