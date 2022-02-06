@@ -18,32 +18,26 @@ export class PessoaService {
   }
 
     ObterTodos(): Observable<pessoa[]> {
-      let absoluteUrl = this.UrlService;
-
-      return this._client.get<pessoa[]>(absoluteUrl);
+      return this._client.get<pessoa[]>(this.UrlService);
     }
 
   ObterPorId(Id: number): Observable<any> {
-    let absoluteUrl = this.UrlService + `${Id}`;
+    let url = this.UrlService + `${Id}`;
 
-    return this._client.get<any[]>(absoluteUrl);
+    return this._client.get<any[]>(url);
   }
 
   Adicionar(person: pessoa): Observable<any> {
-    let absoluteUrl = this.UrlService + ``;
-
-    return this._client.post<pessoa>(absoluteUrl, person);
+    return this._client.post<pessoa>(this.UrlService, person);
   }
 
   Alterar(person: pessoa): Observable<any> {
-    let absoluteUrl = this.UrlService + ``;
-
-    return this._client.put<pessoa>(absoluteUrl, person);
+    return this._client.put<pessoa>(this.UrlService, person);
   }
 
   Excluir(Id: number): Observable<any> {
-    let absoluteUrl = this.UrlService + `${Id}`;
+    let url = this.UrlService + `${Id}`;
 
-    return this._client.delete<any[]>(absoluteUrl);
+    return this._client.delete<any[]>(url);
   }
 }

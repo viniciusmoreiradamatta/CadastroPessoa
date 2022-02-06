@@ -1,5 +1,6 @@
 export class pessoa {
     id: number = 0;
+    cpf: string = '';
     nome: string = '';
     sobrenome: string = '';
     nacionalidade: string = '';

@@ -1,1 +1,47 @@
-<p>detalhe works!</p>
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Nome:</label>
+                <label for="nome"> {{ pessoa.nome }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Sobrenome:</label>
+                <label for="nome"> {{ pessoa.sobrenome }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Nacionalidade:</label>
+                <label for="nome"> {{ pessoa.nacionalidade }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">cep:</label>
+                <label for="nome"> {{ pessoa.cep }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Estado:</label>
+                <label for="nome"> {{ pessoa.estado }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Cidade:</label>
+                <label for="nome"> {{ pessoa.cidade }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Logradouro:</label>
+                <label for="nome"> {{ pessoa.logradouro }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Email:</label>
+                <label for="nome"> {{ pessoa.email }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Telefone:</label>
+                <label for="nome"> {{ pessoa.telefone }} </label>
+            </div>
+            <div>
+                <a class="btn btn-warning" [routerLink]="['/cadastro',pessoa.id]">Editar</a>&nbsp;
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>

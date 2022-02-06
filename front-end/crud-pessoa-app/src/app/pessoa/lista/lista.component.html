@@ -49,7 +49,7 @@
                     <a class="btn btn-info" [routerLink]="['/cadastro',pessoa.id]">
                         <span class="fa fa-pencil-alt"></span>
                     </a>&nbsp;
-                    <a class="btn btn-danger" [routerLink]="['/excluir',pessoa.id]">
+                    <a class="btn btn-danger" (click)="open(content, pessoa)">
                         <span class="fa fa-trash"></span>
                     </a>
                 </td>
@@ -57,3 +57,25 @@
         </tbody>
     </table>
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Deseja realmente excluir?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label name="lblnome" for="nome">Nome</label>
+            <div class="input-group">
+                <label for="pessoa.nome">{{pessoaExclusao.nome}} &nbsp;  {{pessoaExclusao.sobrenome}}</label>
+                <label for="pessoa.nome"></label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close(pessoaExclusao.id)">Excluir</button>
+    </div>
+</ng-template>

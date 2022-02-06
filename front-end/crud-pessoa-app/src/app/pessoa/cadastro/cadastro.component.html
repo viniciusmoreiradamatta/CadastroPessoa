@@ -7,24 +7,31 @@
     <div class="row">
         <div class="col-md-12">
             <div class="alert alert-danger" *ngIf="errors.length > 0">
-                <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+                <h3 id="msgRetorno">{{tipoMensagem}}</h3>
                 <ul>
                     <li *ngFor="let error of errors">{{ error }}</li>
                 </ul>
             </div>
             <div class="col-12 row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Nome</label>
                         <div>
-                            <input [(ngModel)]="pessoa.nome" class="form-control" id="nome" type="text"
-                                placeholder="Ex: João" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.nome">
-                            <p [innerHTML]="displayMessage.nome"></p>
-                        </span> -->
+                            <input maxlength="50" [(ngModel)]="pessoa.nome" class="form-control obrigatorio" id="nome"
+                                type="text" placeholder="Ex: João" />
                         </div>
                     </div>
                 </div>
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <label class="control-label font-weight-bold">cpf</label>
+                        <div>
+                            <input maxlength="14" [(ngModel)]="pessoa.cpf" class="form-control obrigatorio" id="cpf"
+                                type="text" placeholder="Ex:000.000.431-55" />
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="col-12 row">
@@ -32,11 +39,8 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Sobrenome</label>
                         <div>
-                            <input [(ngModel)]="pessoa.sobrenome" class="form-control" id="sobrenome" type="text"
-                                placeholder="Ex: da Silva" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.descricao">
-                    <p [innerHTML]="displayMessage.descricao"></p>
-                </span> -->
+                            <input maxlength="100" [(ngModel)]="pessoa.sobrenome" class="form-control obrigatorio"
+                                id="sobrenome" type="text" placeholder="Ex: da Silva" />
                         </div>
                     </div>
                 </div>
@@ -44,11 +48,8 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Nacionalidade</label>
                         <div>
-                            <input [(ngModel)]="pessoa.nacionalidade" class="form-control" id="nacionalidade"
-                                type="text" placeholder="Ex: brasileira" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.descricao">
-                    <p [innerHTML]="displayMessage.descricao"></p>
-                </span> -->
+                            <input maxlength="20" [(ngModel)]="pessoa.nacionalidade" class="form-control obrigatorio"
+                                id="nacionalidade" type="text" placeholder="Ex: brasileira" />
                         </div>
                     </div>
                 </div>
@@ -58,18 +59,15 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Cep</label>
                         <div>
-                            <input [(ngModel)]="pessoa.cep" class="form-control" id="cep" type="text"
-                                placeholder="Ex: 01011-100" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.descricao">
-                    <p [innerHTML]="displayMessage.descricao"></p>
-                </span> -->
+                            <input maxlength="9" [(ngModel)]="pessoa.cep" class="form-control obrigatorio" id="cep"
+                                type="text" placeholder="Ex: 01011-100" (change)="BucarCep()" />
                         </div>
                     </div>
                 </div>
                 <div class="col-4 ">
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Estado</label>
-                        <select [(ngModel)]="pessoa.estado" class="form-control" id="phoneType">
+                        <select [(ngModel)]="idEstado" class="form-control obrigatorio" id="phoneType">
                             <option *ngFor="let c of estados" [value]="c.id">{{c.nome}} - {{c.sigla}}</option>
                         </select>
                     </div>
@@ -78,11 +76,8 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Cidade</label>
                         <div>
-                            <input [(ngModel)]="pessoa.cidade" class="form-control" id="cidade" type="text"
-                                placeholder="Ex: São Paulo" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.descricao">
-                        <p [innerHTML]="displayMessage.descricao"></p>
-                    </span> -->
+                            <input maxlength="50" [(ngModel)]="pessoa.cidade" class="form-control obrigatorio"
+                                id="cidade" type="text" placeholder="Ex: São Paulo" />
                         </div>
                     </div>
                 </div>
@@ -93,11 +88,8 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Logradouro</label>
                         <div>
-                            <input [(ngModel)]="pessoa.logradouro" class="form-control" id="logradouro" type="text"
-                                placeholder="Ex: Rua Boa vista 253" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.nome">
-                            <p [innerHTML]="displayMessage.nome"></p>
-                        </span> -->
+                            <input maxlength="50" [(ngModel)]="pessoa.logradouro" class="form-control obrigatorio"
+                                id="logradouro" type="text" placeholder="Ex: Rua Boa vista 253" />
                         </div>
                     </div>
                 </div>
@@ -108,11 +100,8 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Email</label>
                         <div>
-                            <input [(ngModel)]="pessoa.email" class="form-control" id="email" type="text"
-                                placeholder="Ex: email@email.com" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.descricao">
-                    <p [innerHTML]="displayMessage.descricao"></p>
-                </span> -->
+                            <input maxlength="50" [(ngModel)]="pessoa.email" class="form-control obrigatorio" id="email"
+                                type="text" placeholder="Ex: email@email.com" />
                         </div>
                     </div>
                 </div>
@@ -120,18 +109,15 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold ">Telefone</label>
                         <div>
-                            <input [(ngModel)]="pessoa.telefone" class="form-control" id="telefone" type="text"
-                                placeholder="Ex: (11)2020-3030)" />
-                            <!-- <span class="text-danger" *ngIf="displayMessage.descricao">
-                    <p [innerHTML]="displayMessage.descricao"></p>
-                </span> -->
+                            <input maxlength="15" [(ngModel)]="pessoa.telefone" class="form-control obrigatorio"
+                                id="telefone" type="text" placeholder="Ex: (11)2020-3030)" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group col-12 row d-flex flex-row-reverse">
                 <a class="btn btn-danger" href="/">Voltar</a>
-                <input type="submit" value="Salvar" class="btn btn-success">&nbsp;
+                <input type="submit" (click)="Salvar()" value="Salvar" class="btn btn-success">&nbsp;
             </div>
         </div>
     </div>
