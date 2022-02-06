@@ -17,11 +17,11 @@ export class PessoaService {
     this.UrlService = this.url + this.controller;
   }
 
-  ObterTodos(): Observable<pessoa[]> {
-    let absoluteUrl = this.UrlService;
+    ObterTodos(): Observable<pessoa[]> {
+      let absoluteUrl = this.UrlService;
 
-    return this._client.get<pessoa[]>(absoluteUrl);
-  }
+      return this._client.get<pessoa[]>(absoluteUrl);
+    }
 
   ObterPorId(Id: number): Observable<any> {
     let absoluteUrl = this.UrlService + `${Id}`;

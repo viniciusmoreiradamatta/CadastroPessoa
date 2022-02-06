@@ -10,6 +10,9 @@ services:
       - pg
     depends_on:
       - postgres_service
+    ports:
+      - "8090:80"
+      - "8091:443"
 
   postgres_service:
     image: postgres:14
