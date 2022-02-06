@@ -14,10 +14,13 @@ namespace CadastroPessoa
                                      .NotEmpty().WithMessage("O Sobrenome nao pode ser nulo");
 
             RuleFor(c => c.Logradouro).MaximumLength(50).WithMessage("Tamanho maximo atingido")
-                                     .NotEmpty().WithMessage("O Logradouro nao pode ser nulo");
+                                      .NotEmpty().WithMessage("O Logradouro nao pode ser nulo");
 
             RuleFor(c => c.Cep).MaximumLength(8).WithMessage("Tamanho maximo atingido")
-                                     .NotEmpty().WithMessage("O Cep nao pode ser nulo");
+                               .NotEmpty().WithMessage("O Cep nao pode ser nulo");
+
+            RuleFor(c => c.Cpf).MaximumLength(11).WithMessage("Tamanho maximo atingido")
+                               .NotEmpty().WithMessage("O Cpf nao pode ser nulo");
 
             RuleFor(c => c.Cidade).MaximumLength(50).WithMessage("Tamanho maximo atingido")
                                      .NotEmpty().WithMessage("A Cidade nao pode ser nulo");
@@ -30,7 +33,7 @@ namespace CadastroPessoa
                                  .NotEmpty().WithMessage("O Email nao pode ser nulo");
 
             RuleFor(c => c.Telefone).MaximumLength(13).WithMessage("Tamanho maximo atingido")
-                                     .NotEmpty().WithMessage("O Telefone nao pode ser nulo");
+                                    .NotEmpty().WithMessage("O Telefone nao pode ser nulo");
 
             RuleFor(c => c.Nacionalidade).MaximumLength(20).WithMessage("Tamanho maximo atingido")
                                          .NotEmpty().WithMessage("A Nacionalidade nao pode ser nula");

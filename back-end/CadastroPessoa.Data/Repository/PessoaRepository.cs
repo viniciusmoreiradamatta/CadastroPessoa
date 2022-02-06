@@ -18,6 +18,9 @@ namespace CadastroPessoa.Repository
         public async Task<Pessoa> ObterPessoaAlteracao(int id) =>
                 await _context.Pessoas.FirstOrDefaultAsync(c => c.Id == id);
 
+        public async Task<Pessoa> ObterPessoaJaCadastrada(string cpf) =>
+            await _context.Pessoas.AsNoTrackingWithIdentityResolution().FirstOrDefaultAsync(c => c.Cpf.Equals(cpf));
+
         public async Task<IEnumerable<Pessoa>> ObterTodasPessoas() =>
                 await _context.Pessoas.AsNoTrackingWithIdentityResolution().ToListAsync();
 

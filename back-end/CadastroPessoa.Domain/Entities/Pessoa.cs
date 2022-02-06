@@ -2,7 +2,7 @@
 {
     public class Pessoa
     {
-        public Pessoa(string nome, string sobrenome, string nacionalidade, string cep,
+        public Pessoa(string nome, string sobrenome, string nacionalidade, string cep, string cpf,
                       string estado, string cidade, string logradouro, string email, string telefone)
         {
             Nome = nome;
@@ -14,10 +14,12 @@
             Logradouro = logradouro;
             Email = email;
             Telefone = telefone;
+            Cpf = cpf;
         }
 
         public int Id { get; set; }
         public string Nome { get; private set; }
+        public string Cpf { get; private set; }
         public string Sobrenome { get; private set; }
         public string Nacionalidade { get; private set; }
         public string Cep { get; private set; }

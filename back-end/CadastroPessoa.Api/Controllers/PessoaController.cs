@@ -32,6 +32,12 @@ public class PessoaController : ControllerBase
     public async Task<IActionResult> Post(Pessoa pessoa)
     {
         PessoaValidator validador = new();
+
+        var jaCadastrado = await this.pessoaRepository.ObterPessoaJaCadastrada(pessoa.Cpf);
+
+        if (jaCadastrado is not null)
+            return BadRequest(new { erros = new[] { new { PropertyName = "Cpf", ErrorMessage = "Cpf ja cadastrado" } } });
+
         var validacao = validador.Validate(pessoa);
 
         if (!validacao.IsValid)
@@ -56,6 +62,11 @@ public class PessoaController : ControllerBase
         if (pessoaAlteracao is null)
             return NotFound();
 
+        var jaCadastrado = await this.pessoaRepository.ObterPessoaJaCadastrada(pessoa.Cpf);
+
+        if (jaCadastrado is not null && jaCadastrado.Id != pessoa.Id)
+            return BadRequest(new { erros = new[] { new { PropertyName = "Cpf", ErrorMessage = "Cpf não pertence a este cadastro" } } });
+
         pessoaAlteracao.AlterarNome(pessoa.Nome);
         pessoaAlteracao.AlterarSobrenome(pessoa.Sobrenome);
         pessoaAlteracao.AlterarNacionalidade(pessoa.Nacionalidade);
@@ -79,7 +90,7 @@ public class PessoaController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var pessoa = await this.pessoaRepository.ObterPessoaAlteracao(id);

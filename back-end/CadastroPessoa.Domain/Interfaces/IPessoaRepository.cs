@@ -2,11 +2,6 @@
 
 namespace CadastroPessoa
 {
-    public interface IUnitOfWork
-    {
-        Task SaveChanges();
-    }
-
     public interface IPessoaRepository : IUnitOfWork
     {
         void Remover(Pessoa pessoa);
@@ -14,6 +9,8 @@ namespace CadastroPessoa
         Task AdicionarPessoa(Pessoa pessoa);
 
         Task<Pessoa> ObterPessoaAlteracao(int id);
+
+        Task<Pessoa> ObterPessoaJaCadastrada(string cpf);
 
         Task<IEnumerable<Pessoa>> ObterTodasPessoas();
     }

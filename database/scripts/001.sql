@@ -6,22 +6,23 @@ ALTER TABLE IF EXISTS docker.pessoa
 
 create table cadastropessoa.pessoa(
     Id integer not null generated always as IDENTITY,
-    Nome varchar(50), 
-    Sobrenome varchar(100),
-    Nacionalidade varchar(20), 
-    CEP varchar(8),
-    Estado varchar(2), 
-    Cidade varchar(50), 
-    Logradouro varchar(50), 
-    Email varchar(50),
-    Telefone varchar(13));
+    Nome varchar(50) not null, 
+    Sobrenome varchar(100) not null,
+    Nacionalidade varchar(20) not null, 
+    CEP varchar(8) not null,
+    Cpf varchar(11) not null,
+    Estado varchar(2) not null, 
+    Cidade varchar(50) not null, 
+    Logradouro varchar(50) not null, 
+    Email varchar(50) not null,
+    Telefone varchar(13) not null);
 
 INSERT INTO cadastropessoa.pessoa(
-	 nome, sobrenome, nacionalidade, cep, estado, cidade, logradouro, email, telefone)
-	VALUES ( 'pessoa 01', 'sobrenome', 'brasileira', '79977788', 'Uf', 'cidade', 'logradouro', 'pessoa@email.com', '5599999999999');
+	 nome, sobrenome, nacionalidade, cep, cpf, estado, cidade, logradouro, email, telefone)
+	VALUES ( 'pessoa 01', 'sobrenome', 'brasileira', '79977788','00000000000', 'Uf', 'cidade', 'logradouro', 'pessoa@email.com', '5599999999999');
 	
 	
 INSERT INTO cadastropessoa.pessoa(
-	 nome, sobrenome, nacionalidade, cep, estado, cidade, logradouro, email, telefone)
-	VALUES ( 'pessoa 02', 'sobrenome', 'brasileira', '79977744', 'Uf', 'cidade', 'logradouro', 'pessoa2@email.com', '5599999999999');
+	 nome, sobrenome, nacionalidade, cep,cpf,  estado, cidade, logradouro, email, telefone)
+	VALUES ( 'pessoa 02', 'sobrenome', 'brasileira', '79977744','00000000000', 'Uf', 'cidade', 'logradouro', 'pessoa2@email.com', '5599999999999');
 	
