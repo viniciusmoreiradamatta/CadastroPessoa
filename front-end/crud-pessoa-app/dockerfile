@@ -1,0 +1,19 @@
+FROM node:16-alpine as BUILDER
+
+RUN npm install -g @angular/cli
+
+RUN ls
+
+ADD ./package.json /package.json
+
+WORKDIR /app/
+
+RUN npm install 
+
+ADD . /app/
+
+RUN ng build 
+
+FROM nginx:alpine
+
+COPY --from=BUILDER /app/dist/crud-pessoa-app/ /usr/share/nginx/html

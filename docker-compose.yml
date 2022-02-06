@@ -2,7 +2,18 @@ version: '3.4'
 
 services:
   cadastropessoa.api:
-    image: ${DOCKER_REGISTRY-}cadastropessoaapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    # ports:
+    #   - "80"
+    #   - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    # image: ${DOCKER_REGISTRY-}cadastropessoaapi
+    image: api-pessoa
+
     build:
       context: .
       dockerfile: back-end/CadastroPessoa.Api/Dockerfile
@@ -13,6 +24,18 @@ services:
     ports:
       - "8090:80"
       - "8091:443"
+
+  person.app:
+   image: viniciusmoreiradamatta/app-pessoa
+  #  build:
+  #    context: .
+  #    dockerfile: front-end/crud-pessoa-app/Dockerfile
+   depends_on:
+     - cadastropessoa.api
+   ports:
+     - 80:80 
+   networks:
+      - pg
 
   postgres_service:
     image: postgres:14
