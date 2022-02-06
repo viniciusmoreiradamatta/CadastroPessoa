@@ -62,12 +62,8 @@ public class PessoaController : ControllerBase
         if (pessoaAlteracao is null)
             return NotFound();
 
-        var jaCadastrado = await this.pessoaRepository.ObterPessoaJaCadastrada(pessoa.Cpf);
-
-        if (jaCadastrado is not null && jaCadastrado.Id != pessoa.Id)
-            return BadRequest(new { erros = new[] { new { PropertyName = "Cpf", ErrorMessage = "Cpf não pertence a este cadastro" } } });
-
         pessoaAlteracao.AlterarNome(pessoa.Nome);
+        pessoaAlteracao.AlterarCpf(pessoa.Cpf);
         pessoaAlteracao.AlterarSobrenome(pessoa.Sobrenome);
         pessoaAlteracao.AlterarNacionalidade(pessoa.Nacionalidade);
         pessoaAlteracao.AlterarEstado(pessoa.Estado);

@@ -34,6 +34,11 @@
             this.Nome = novoNome;
         }
 
+        public void AlterarCpf(string novoCpf)
+        {
+            this.Cpf = novoCpf;
+        }
+
         public void AlterarSobrenome(string novoSobrenome)
         {
             this.Sobrenome = novoSobrenome;
