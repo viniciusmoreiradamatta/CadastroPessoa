@@ -10,7 +10,6 @@ import { estado, endereco } from '../pessoa/estado';
 export class EstadoService {
 
   endercoExterno: string = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-  enderecoViaCep: string = "https://viacep.com.br/ws/";
 
   constructor(private _client: HttpClient) { }
 
@@ -19,7 +18,8 @@ export class EstadoService {
   }
 
   ObterEnderecoPorCep(cep: string): Observable<endereco> {
-    this.enderecoViaCep += cep + "/json/"
-    return this._client.get<endereco>(this.enderecoViaCep);
+    let enderecoViaCep: string = "https://viacep.com.br/ws/" + cep + "/json/";
+
+    return this._client.get<endereco>(enderecoViaCep);
   }
 }

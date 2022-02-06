@@ -34,6 +34,12 @@ export class CadastroComponent implements OnInit {
     this._estadoService.ObterEnderecoPorCep(this.pessoa.cep)
       .subscribe({
         next: result => {
+          if (result.erro == true) {
+            this.pessoa.logradouro = '';
+            this.pessoa.cidade = '';
+            this.idEstado = 0;
+            return;
+          }
 
           this.pessoa.logradouro = result.logradouro;
           this.pessoa.cidade = result.localidade;

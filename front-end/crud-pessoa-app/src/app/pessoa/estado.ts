@@ -15,4 +15,5 @@ export interface endereco {
     gia: string;
     ddd: string;
     siafi: string;
+    erro: boolean;
 }

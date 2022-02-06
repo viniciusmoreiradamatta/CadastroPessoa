@@ -67,7 +67,7 @@
                 <div class="col-4 ">
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Estado</label>
-                        <select [(ngModel)]="idEstado" class="form-control obrigatorio" id="phoneType">
+                        <select  [(ngModel)]="idEstado" class="form-control obrigatorio" id="phoneType">
                             <option *ngFor="let c of estados" [value]="c.id">{{c.nome}} - {{c.sigla}}</option>
                         </select>
                     </div>
