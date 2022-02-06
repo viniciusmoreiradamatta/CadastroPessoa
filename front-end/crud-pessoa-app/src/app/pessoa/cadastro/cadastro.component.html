@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">cpf</label>
                         <div>
-                            <input maxlength="14" [(ngModel)]="pessoa.cpf" class="form-control obrigatorio" id="cpf"
+                            <input maxlength="14" [(ngModel)]="pessoa.cpf" mask="000.000.000-00" class="form-control obrigatorio" id="cpf"
                                 type="text" placeholder="Ex:000.000.431-55" />
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Cep</label>
                         <div>
-                            <input maxlength="9" [(ngModel)]="pessoa.cep" class="form-control obrigatorio" id="cep"
+                            <input maxlength="9" [(ngModel)]="pessoa.cep" mask="00000-000"  class="form-control obrigatorio" id="cep"
                                 type="text" placeholder="Ex: 01011-100" (change)="BucarCep()" />
                         </div>
                     </div>
@@ -88,8 +88,9 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold">Logradouro</label>
                         <div>
-                            <input maxlength="50" [(ngModel)]="pessoa.logradouro" class="form-control obrigatorio"
-                                id="logradouro" type="text" placeholder="Ex: Rua Boa vista 253" />
+                            <input maxlength="50" [(ngModel)]="pessoa.logradouro "
+                                class="form-control obrigatorio" id="logradouro" type="text"
+                                placeholder="Ex: Rua Boa vista 253" />
                         </div>
                     </div>
                 </div>
@@ -109,7 +110,7 @@
                     <div class="form-group">
                         <label class="control-label font-weight-bold ">Telefone</label>
                         <div>
-                            <input maxlength="15" [(ngModel)]="pessoa.telefone" class="form-control obrigatorio"
+                            <input maxlength="20" [(ngModel)]="pessoa.telefone" mask="(00) 0000-0000||(00) 00000-0000" class="form-control obrigatorio"
                                 id="telefone" type="text" placeholder="Ex: (11)2020-3030)" />
                         </div>
                     </div>

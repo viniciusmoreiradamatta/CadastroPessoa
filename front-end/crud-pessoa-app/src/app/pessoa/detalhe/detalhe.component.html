@@ -11,12 +11,16 @@
                 <label for="nome"> {{ pessoa.sobrenome }} </label>
             </div>
             <div class="form-group pb-0 m-0">
+                <label class="control-label font-weight-bold mr-2">Cpf:</label>
+                <label for="nome"> {{ pessoa.cpf | mask: '000.000.000-00' }} </label>
+            </div>
+            <div class="form-group pb-0 m-0">
                 <label class="control-label font-weight-bold mr-2">Nacionalidade:</label>
                 <label for="nome"> {{ pessoa.nacionalidade }} </label>
             </div>
             <div class="form-group pb-0 m-0">
                 <label class="control-label font-weight-bold mr-2">cep:</label>
-                <label for="nome"> {{ pessoa.cep }} </label>
+                <label for="nome"> {{ pessoa.cep | mask: '00000-000' }}} </label>
             </div>
             <div class="form-group pb-0 m-0">
                 <label class="control-label font-weight-bold mr-2">Estado:</label>
@@ -36,7 +40,7 @@
             </div>
             <div class="form-group pb-0 m-0">
                 <label class="control-label font-weight-bold mr-2">Telefone:</label>
-                <label for="nome"> {{ pessoa.telefone }} </label>
+                <label for="nome"> {{ pessoa.telefone | mask: '(00) 0000-0000' }} </label>
             </div>
             <div>
                 <a class="btn btn-warning" [routerLink]="['/cadastro',pessoa.id]">Editar</a>&nbsp;

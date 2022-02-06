@@ -40,7 +40,7 @@ export class ListaComponent implements OnInit {
 
         this._service.Excluir(result).subscribe({
           next: result => {
-            this.pessoas = result
+            window.location.reload();
           },
           error: (error) => {
             this.errorMessage = 'Ocorreu um erro'
