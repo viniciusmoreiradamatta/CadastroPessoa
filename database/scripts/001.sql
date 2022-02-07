@@ -16,13 +16,3 @@ create table cadastropessoa.pessoa(
     Logradouro varchar(50) not null, 
     Email varchar(50) not null,
     Telefone varchar(13) not null);
-
-INSERT INTO cadastropessoa.pessoa(
-	 nome, sobrenome, nacionalidade, cep, cpf, estado, cidade, logradouro, email, telefone)
-	VALUES ( 'pessoa 01', 'sobrenome', 'brasileira', '79977788','00000000000', 'Uf', 'cidade', 'logradouro', 'pessoa@email.com', '5599999999999');
-	
-	
-INSERT INTO cadastropessoa.pessoa(
-	 nome, sobrenome, nacionalidade, cep,cpf,  estado, cidade, logradouro, email, telefone)
-	VALUES ( 'pessoa 02', 'sobrenome', 'brasileira', '79977744','00000000000', 'Uf', 'cidade', 'logradouro', 'pessoa2@email.com', '5599999999999');
-	
