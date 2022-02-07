@@ -16,10 +16,10 @@ namespace CadastroPessoa.Repository
         public async Task AdicionarPessoa(Pessoa pessoa) => await _context.AddAsync(pessoa);
 
         public async Task<Pessoa> ObterPessoaAlteracao(int id) =>
-                await _context.Pessoas.FirstOrDefaultAsync(c => c.Id == id);
+                await _context.Pessoas.SingleOrDefaultAsync(c => c.Id == id);
 
         public async Task<Pessoa> ObterPessoaJaCadastrada(string cpf) =>
-            await _context.Pessoas.AsNoTrackingWithIdentityResolution().FirstOrDefaultAsync(c => c.Cpf.Equals(cpf));
+            await _context.Pessoas.AsNoTrackingWithIdentityResolution().SingleOrDefaultAsync(c => c.Cpf.Equals(cpf));
 
         public async Task<IEnumerable<Pessoa>> ObterTodasPessoas() =>
                 await _context.Pessoas.AsNoTrackingWithIdentityResolution().ToListAsync();
