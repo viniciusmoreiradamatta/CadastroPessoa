@@ -5,4 +5,4 @@ Solução composta por:
 - back-end api rest .net 6
 - banco de dados postgres
 
-Para a aplicação o processo basta executar docker-compose up na pasta raiz da solução.
+Para iniciar a aplicação basta executar docker-compose up na pasta raiz da solução.
