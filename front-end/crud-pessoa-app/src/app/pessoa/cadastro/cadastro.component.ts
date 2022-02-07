@@ -35,9 +35,6 @@ export class CadastroComponent implements OnInit {
       .subscribe({
         next: result => {
           if (result.erro == true) {
-            this.pessoa.logradouro = '';
-            this.pessoa.cidade = '';
-            this.idEstado = 0;
             return;
           }
 
@@ -53,8 +50,36 @@ export class CadastroComponent implements OnInit {
   }
 
   VerificarEstadoSelecionado(sigla: string): estado {
-    let estadoSecionado = this.estados.filter((val) => val.sigla.toUpperCase() == sigla.toUpperCase())
+    let estado: estado;
+
+    if (sigla == '') {
+      estado = this.VerificarEstadoPorId();
+    }
+    else
+      estado = this.VerificarEstadoPorSigla(sigla);
+    
+      return estado;
+  }
+
+  VerificarEstadoPorId(): estado {
+    let estadoSecionado = this.estados.filter((val) => val.id == this.idEstado);
     let estado = estadoSecionado[0];
+
+    this.pessoa.estado = estado.sigla;
+
+    return estado;
+  }
+
+  VerificarEstadoPorSigla(sigla: string) {
+    let estadoSecionado = this.estados.filter((val) => val.sigla.toUpperCase() == sigla.toUpperCase());
+
+    let estado = estadoSecionado[0];
+
+    if (estadoSecionado.length == 0 || estado.id == 0) {
+      let estadoNulo: estado = { id: 0, nome: 'Selecione', sigla: '' };
+      return estadoNulo;
+    }
+
     this.idEstado = estado.id;
     return estado;
   }
