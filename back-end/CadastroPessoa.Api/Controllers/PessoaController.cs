@@ -1,4 +1,4 @@
-using CadastroPessoa.Entities;
+﻿using CadastroPessoa.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CadastroPessoa.Api.Controllers;
@@ -61,6 +61,11 @@ public class PessoaController : ControllerBase
 
         if (pessoaAlteracao is null)
             return NotFound();
+
+        var jaCadastrado = await this.pessoaRepository.ObterPessoaJaCadastrada(pessoa.Cpf);
+
+        if (jaCadastrado is not null && jaCadastrado.Id != pessoa.Id)
+            return BadRequest(new { erros = new[] { new { PropertyName = "Cpf", ErrorMessage = "Cpf não pertence a este cadastro!" } } });
 
         pessoaAlteracao.AlterarNome(pessoa.Nome);
         pessoaAlteracao.AlterarCpf(pessoa.Cpf);
